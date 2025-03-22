@@ -49,7 +49,7 @@ with tab1:
     
     
 data = load_data(uploaded_file) ## uploading the users data 
-
+# this is falaknaaz.
 
 ##creating ui for user to select variables
 #assigning to variable names to be used later 
