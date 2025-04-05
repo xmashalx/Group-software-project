@@ -20,23 +20,23 @@ This tool is especially helpful for:
 ## Built with 
 This web application was built using the following major frameworks and libraries:
 
-Streamlit - For building the web app interface and making it interactive.
+***Streamlit*** - For building the web app interface and making it interactive.
 
-NumPy - A package for numerical computations, used for handling data.
+***NumPy*** - A package for numerical computations, used for handling data.
 
-Pandas - A powerful data manipulation library used to handle and process data.
+***Pandas*** - A powerful data manipulation library used to handle and process data.
 
-Matplotlib & Seaborn - For data visualization and plotting.
+***Matplotlib & Seaborn*** - For data visualization and plotting.
 
-Statsmodels - Used for statistical modeling, including Linear Mixed Models.
+***Statsmodels*** - Used for statistical modeling, including Linear Mixed Models.
 
-Scipy - For statistical functions and support.
+***Scipy*** - For statistical functions and support.
 
-Other Tools:
+**<u>Other Tools:</u>**
 
-Python - The primary programming language for this project.
+***Python*** - The primary programming language for this project.
 
-GitHub - For version control and repository hosting.
+***GitHub*** - For version control and repository hosting.
 
 ## 🚀 1. Getting Started
 
@@ -51,21 +51,25 @@ You can get the project files by cloning the GitHub repository:
 3) navigate into the project folder: cd Group-software-project
 
 ### 1.3 Create a virtual environemnt (optional but recomended)
-On Windows
+***On Windows***
 run the following commands:
+
 python -m venv env
+
 env\Scripts\activate
 
-On macOS/Linux
+***On macOS/Linux***
 run the following commands:
+
 python3 -m venv env
+
 source env/bin/activate
 
 ### 1.4 Install the required packages
 run the following command: pip install -r requirements.txt
 
 ### 1.5 Run the application 
-streamlit run gsp_app.py
+run the following command: streamlit run gsp_app.py
 
 ### 1.6 Using the web application 
 To test the Linear Mixed Modelling Web Application, you’ll need a dataset to upload. 
