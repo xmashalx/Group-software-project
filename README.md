@@ -21,14 +21,21 @@ This tool is especially helpful for:
 This web application was built using the following major frameworks and libraries:
 
 Streamlit - For building the web app interface and making it interactive.
+
 NumPy - A package for numerical computations, used for handling data.
+
 Pandas - A powerful data manipulation library used to handle and process data.
+
 Matplotlib & Seaborn - For data visualization and plotting.
+
 Statsmodels - Used for statistical modeling, including Linear Mixed Models.
+
 Scipy - For statistical functions and support.
 
 Other Tools:
+
 Python - The primary programming language for this project.
+
 GitHub - For version control and repository hosting.
 
 ## 🚀 1. Getting Started
@@ -84,11 +91,16 @@ Columns:
 
 ## 3. Acknowledgements 
 The developers of this project are:
+
 Mashal Hussain - 19343366@brookes.ac.uk
+
 FalaKnaaz Khan - 19335056@brookes.ac.uk
+
 Mukul Katkar - 19310486@brookes.ac.uk
+
 Vaibhav Lakhani - 19326141@brookes.ac.uk
 
-Additionally, we would like to thank our Product Owner and Project Supervisor:
+Additionally, we would like to thank our Product Owner and Project Supervisor: 
+
 Dr.Eleni Elia – For their guidance, feedback, and role as the project owner.
 For helping us navigate and fulfill the project requirements. Their insights were invaluable throughout the development process.
