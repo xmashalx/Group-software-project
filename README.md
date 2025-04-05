@@ -32,7 +32,7 @@ This web application was built using the following major frameworks and librarie
 
 ***Scipy*** - For statistical functions and support.
 
-**<u>Other Tools:</u>**
+## Other Tools:
 
 ***Python*** - The primary programming language for this project.
 
