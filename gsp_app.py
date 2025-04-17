@@ -17,7 +17,10 @@ import statsmodels.api as sm
 import statsmodels.formula.api as smf
 from statsmodels.tools.sm_exceptions import ConvergenceWarning
 
-st.title('Welcome to Blendstat: this is a mixed modelling web application')
+col1, col2 = st.columns([1, 5])
+col1.image('logo.png', width=100)
+col2.title('Welcome to Blendstat: this is a mixed modelling web application')
+
 
 #"""Loading the data"""
 
