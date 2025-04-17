@@ -21,10 +21,10 @@ col1, col2 = st.columns([1, 5])
 col1.image('logo.png', width=150)
 col2.markdown(
     '''
-    <h1 style="line-height: 1.2; margin: 0; padding: 0; display: inline-block;">
+    <h2 style="line-height: 1.2; margin: 0; padding: 0; display: inline-block; font-size: 28px;">
         Welcome to Blendstat
-    </h1>
-    <p style="font-size: 16px; margin-top: 5px; font-weight: normal; color: #555;">
+    </h2>
+    <p style="font-size: 18px; margin-top: 5px; font-weight: normal; color: #555;">
         This is a linear mixed modelling website
     </p>
     ''', unsafe_allow_html=True
