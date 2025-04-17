@@ -19,7 +19,14 @@ from statsmodels.tools.sm_exceptions import ConvergenceWarning
 
 col1, col2 = st.columns([1, 5])
 col1.image('logo.png', width=100)
-col2.markdown('<h1 style="line-height: 2.5;">Welcome to Blendstat: this is a mixed modelling web application</h1>', unsafe_allow_html=True)
+col2.markdown(
+    '''
+    <h1 style="line-height: 1.2; margin: 0; padding: 0; display: inline-block;">
+        Welcome to Blendstat: this is a mixed modelling web application
+    </h1>
+    ''', unsafe_allow_html=True
+)
+
 #col2.title('Welcome to Blendstat: this is a mixed modelling web application')
 
 
