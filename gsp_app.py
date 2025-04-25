@@ -97,8 +97,8 @@ data = load_data(uploaded_file) ## uploading the users data
 if data is not None:
     column_names = data.columns.tolist() ##putting the column names into a list
     st.sidebar.write('Variable selection')
-    target=st.sidebar.selectbox("Select Target", column_names)
-    features=st.sidebar.multiselect("Select Features", column_names)
+    target=st.sidebar.selectbox("Select Target variable", column_names)
+    features=st.sidebar.multiselect("Select predictor variables (fixed effects)", column_names)
     group_vars = st.sidebar.selectbox("Select Grouping Variable", column_names)
     st.sidebar.write('customise random effects: ')
     is_rand_intercept=st.sidebar.checkbox('Include random intercepts')
