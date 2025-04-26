@@ -206,7 +206,7 @@ if data is not None:
     is_rand_intercept=st.sidebar.checkbox('Include random intercepts')
     is_rand_slopes=st.sidebar.checkbox('Include random slopes')
     if is_rand_slopes:
-        random_slopes=st.sidebar.multiselect("select which predictor variable will have random slopes (optional) ", features)
+        random_slopes=st.sidebar.multiselect("select whichvariable will allow for random slopes ", features)
 
 
 
