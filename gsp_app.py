@@ -299,7 +299,7 @@ with tab3: ##this tab is going to be for fitting the model displaying the model 
                     ##fitting a random effects model
                     model_random=smf.mixedlm(formula, data, groups=data[group_vars],re_formula=re_formula)
                     #model_random = MixedLM.from_formula(formula, data=data, groups=data[group_vars],re_formula=re_formula, cov_struct=cov_struct)
-                    model_random_fitted = model_random.fit()
+                    model_random_fitted = model_random.fit(reml=False)
                     #model_random= MixedLM(formula, data, groups=data[random_vars],re_formula=re_formula,cov_struct=cov_struct).fit() #ref (https://www.geeksforgeeks.org/introduction-to-linear-mixed-effects-models/)
                     #st.write('Fixed effect model summary: ')
                     #st.write(model_fixed.summary())
