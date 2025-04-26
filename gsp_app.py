@@ -94,7 +94,7 @@ with tab1:
         All patients would fall into one of the three hospitals. It is usefull to analyse this type of data as we can assess the outcome  
         of patients across different hospitals (i.e. assess outcomes across groups)
         - **Random Predictors**: Variables whose effects vary between groups (e.g. how does a specific drug dosage affect patients in hospitals differently)
-        **Random Intercepts**: Allow baseline outcomes to differ by group (e.g. we might believe that the drug dosage is affecting the baseline blood pressure prediction  
+        - **Random Intercepts**: Allow baseline outcomes to differ by group (e.g. we might believe that the drug dosage is affecting the baseline blood pressure prediction  
         of patients differently across treatment groups)
         - **Random slopes**: Allow baseline outcomes to differ by group (e.g., we might believe that the relationship between drug dosage and blood pressure differs across hospitals,  
         even if baseline blood pressure is similar)
