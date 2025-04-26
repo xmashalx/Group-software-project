@@ -341,7 +341,7 @@ with tab3: ##this tab is going to be for fitting the model displaying the model 
                                         ~random_df.duplicated(subset=['Effect Name'], keep='first')]
 
                     
-                    st.subheader('🧮 Random Effects Covariance Structure')
+                    st.subheader('🧮 Random Effects Covariance')
                     st.dataframe(random_df, use_container_width=True)
                     
                     # Optional: show residual variance (i.e., error)
