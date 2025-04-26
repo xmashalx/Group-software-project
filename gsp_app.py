@@ -93,12 +93,13 @@ with tab1:
         For example a column named hospital that includes 3 unique variable values, Hospital A, Hospital B, and Hospital C would be a grouping variable.  
         All patients would fall into one of the three hospitals. It is usefull to analyse this type of data as we can assess the outcome  
         of patients across different hospitals (i.e. assess outcomes across groups)
-        - **Random effects**: Variables whose effects vary between groups (e.g. how does a specific drug dosage affect patients in hospitals differently)
-        - **Random Intercepts**: Allow baseline outcomes to differ by group (e.g. we might believe that the drug dosage is affecting the baseline blood pressure prediction  
-        of patients differently across treatment groups)
-        - **Random slopes**: Allow baseline outcomes to differ by group (e.g., we might believe that the relationship between drug dosage and blood pressure differs across hospitals,  
-        even if baseline blood pressure is similar)
+        - **Random effects**: Including random effects allows for outcomes to vary between groups (e.g. how does a specific drug dosage affect patients in hospitals differently)
+        - **Random Intercepts**: Allow baseline outcomes to differ by group (irrespective of any predictor variable) (e.g. we might believe that the baseline blood pressure for patients varies according to the hospital)
+        - **Random slopes**: Allow the relationship between a specific predictor and the oucomes to vary across groups (e.g., we might believe that the relationship between drug dosage and blood pressure differs across hospitals,  
+        therefore when choosing to select random slopes to be a part of the model you must choose which variable you would like to have a random slope effect)  
+        NOTE: to allow for both random intercept and random slopes in you model you can tick both checkboxes, remember to select a variable to model random slopes
         """)
+        
     
     # --- How to Use ---
     st.subheader('Step-by-Step Guide')
