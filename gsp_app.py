@@ -58,34 +58,134 @@ tab1, tab2, tab3,tab4 = st.tabs(["Welcome", "your data", "Mixed Model","Diagnost
 with tab1:
     # This tab is for helping the user understand the functionality of the web app
     st.header('User Guide')
-
+    
+    # --- Overview ---
     st.subheader('Overview')
-    st.write("Blendstat is a mixed modelling web application that allows users to upload datasets, configure mixed models, and analyze results interactively.")
-
-    st.subheader('How to Use')
     st.write("""
-    1. **Upload your dataset**: Go to the sidebar and upload a CSV file.
-    2. **Explore your data**: View raw data, summary statistics, and missing values in the 'Your Data' tab.
-    3. **Select variables**: Choose a target variable, features, and grouping variable in the sidebar.
-    4. **Fit a mixed model**: Navigate to the 'Mixed Model' tab and click 'Fit Mixed Model'.
-    5. **Analyze results**: Review model coefficients, significance, and diagnostics.
+    BlendStat is a mixed modelling web application designed to analyze hierarchical data using Linear Mixed Effects Models (LMMs). 
+    Upload your dataset, configure models visually, and gain insights through interactive statistical analysis.
     """)
-
-    st.subheader('Features')
-    st.write("""
-    - Upload and preview datasets
-    - Select target, predictor, and grouping variables
-    - Fit mixed models with random intercepts and slopes
-    - Visualize data distributions and boxplots
-    - View model coefficients and statistical summaries
-    - Conduct diagnostics for model evaluation
+    
+    # --- Key Concepts ---
+    st.subheader('Key Concepts')
+    with st.expander("What is a Linear Mixed Effects Model?"):
+        st.write("""
+        **LMMs** handle clustered/hierarchical data by combining:
+        - **Fixed effects**: Population-level predictors (e.g., drug dosage for all patients)
+        - **Random effects**: Group-specific variations (e.g., baseline differences across hospitals)
+        """)
+    
+    with st.expander("What is Hierarchical Data?"):
+        st.write("""
+        Data with nested structure:
+        - Students → Classrooms → Schools
+        - Patients → Doctors → Hospitals
+        - Repeated measurements → Individuals
+        """)
+    
+    
+    with st.expander("Variable Definitions"):
+        st.markdown("""
+        - **Target Variable**: Your outcome measure, for example you may be trying to measure blood preasure in patients 
+        - **Fixed Predictors**: Variables with consistent effects across all groups (e.g. the age of a patient might affect patients blood pressure  
+        consistently regardless of what hospital they go to)
+        - **Grouping Variable**: Clustering factor, this is a variable that can group together the rest of the data into sections.  
+        For example a column named hospital that includes 3 unique variable values, Hospital A, Hospital B, and Hospital C would be a grouping variable.  
+        All patients would fall into one of the three hospitals. It is usefull to analyse this type of data as we can assess the outcome  
+        of patients across different hospitals (i.e. assess outcomes across groups)
+        - **Random Predictors**: Variables whose effects vary between groups (e.g. how does a specific drug dosage affect patients in hospitals differently)
+        **Random Intercepts**: Allow baseline outcomes to differ by group (e.g. we might believe that the drug dosage is affecting the baseline blood pressure prediction  
+        of patients differently across treatment groups)
+        - **Random slopes**: Allow baseline outcomes to differ by group (e.g., we might believe that the relationship between drug dosage and blood pressure differs across hospitals,  
+        even if baseline blood pressure is similar)
+        """)
+    
+    # --- How to Use ---
+    st.subheader('Step-by-Step Guide')
+    
+    # Part A - Uploading Data
+    st.markdown("""
+    ### A. Uploading Data
+    1. **Supported Formats**: CSV/Excel files (<100MB)
+    2. **Data Requirements**:
+       - One row per observation
+       - Columns for target, predictors, and grouping variables
+       - Clean missing values beforehand
+    3. **Pro Tip**: Start with a sample dataset: (https://vincentarelbundock.github.io/Rdatasets/csv/lme4/sleepstudy.csv) to practice
     """)
+    
+    # Part B - Exploring Data
+    st.markdown("""
+    ### B. Exploring Your Data
+    Use the *Data Exploration* tab to:
+    - **Preview raw data** 
+    - **Summary statistics**: Mean, SD, min/max
+    - **Visualizations**:
+      - Boxplots by group
+      - Scatterplots for relationships
+      - Histograms for distributions
+    
+    **Check for**: Outliers, skewed distributions, and group imbalances
+    """)
+    
+    # Part C - Model Fitting
+    st.markdown("""
+    ### C. Fitting Your Model
+    1. **Variable Selection** (Sidebar):
+       - Target: Your outcome variable
+       - Fixed Effects: 1+ predictors
+       - Grouping Variable: Cluster identifier
+       - Random Effects: Choose to include at least one of intercepts/slopes and select a variable for these
 
+    2. **Output Interpretation** Go to the model tab:
+    #### 1️⃣ Fixed Effects (Population-Level)
+    *What to look for:*
+    - **Coefficients**  
+      ▸ Positive value → Target variable increases with predictor  
+      ▸ Negative value → Target variable decreases with predictor  
+      ▸ Near zero → Little effect  
+    - **P-values**  
+      ▸ *p < 0.05* → Statistically significant (⭐)  
+      ▸ *p > 0.05* → Not significant (may need removal)  
+    - **Intercept**  
+      Baseline prediction when all predictors = 0 (check if meaningful)
+     
+    #### 2️⃣ Random Effects (Group-Level) 
+    - **Intercepts**  
+      ▸ Positive → Group baseline > population average  
+      ▸ Negative → Group baseline < average  
+      ▸ Large magnitude → Big group differences  
+    - **Slopes**  
+      ▸ Positive → Predictor effect stronger in this group  
+      ▸ Negative → Effect weaker/reversed in group  
+    - **Variance Components**  
+      ▸ High variance → Groups differ substantially  
+      ▸ Low variance → Groups behave similarly
+    #### 3️⃣ Model Comparison (If Available)
+    **Guidelines:**  
+    - Lower AIC/BIC → Better model  
+    - Higher log-likelihood → Better fit  
+    - Prefer simpler models unless complex one improves fit substantially
+    """)
+    
+    # Part D - Diagnostics
+    st.markdown("""
+    ### D. Model Diagnostics
+    Check model validity in the *Diagnostics* tab:
+    Here you can check for the following linear mixed model assumptions:
+    - linearity 
+    - Homoscedasticity
+    - normality of residuals 
+    - normality of random effects 
+    - multicollinearity
+    There will be interpretation guidance in this tab to help understand if the model violates any assumptions. 
+    """)
+    # --- Help ---
     st.subheader('Need Help?')
-    st.write("If you have questions, refer to the documentation or contact support.")
-
-
-
+    st.write("""
+    contact support:
+    ✉️ Email: 19343366@brookes.ac.uk
+    """)
 
 
 data = load_data(uploaded_file) ## uploading the users data
