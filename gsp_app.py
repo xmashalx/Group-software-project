@@ -93,7 +93,7 @@ with tab1:
         For example a column named hospital that includes 3 unique variable values, Hospital A, Hospital B, and Hospital C would be a grouping variable.  
         All patients would fall into one of the three hospitals. It is usefull to analyse this type of data as we can assess the outcome  
         of patients across different hospitals (i.e. assess outcomes across groups)
-        - **Random Predictors**: Variables whose effects vary between groups (e.g. how does a specific drug dosage affect patients in hospitals differently)
+        - **Random effects**: Variables whose effects vary between groups (e.g. how does a specific drug dosage affect patients in hospitals differently)
         - **Random Intercepts**: Allow baseline outcomes to differ by group (e.g. we might believe that the drug dosage is affecting the baseline blood pressure prediction  
         of patients differently across treatment groups)
         - **Random slopes**: Allow baseline outcomes to differ by group (e.g., we might believe that the relationship between drug dosage and blood pressure differs across hospitals,  
@@ -135,7 +135,8 @@ with tab1:
        - Target: Your outcome variable
        - Fixed Effects: 1+ predictors
        - Grouping Variable: Cluster identifier
-       - Random Effects: Choose to include at least one of intercepts/slopes and select a variable for these
+       - Random Effects: Choose to allow at least one predictor to have a random effect across groups in your model  
+       you can tick the type of random effect you want this variable to have: random intercept, random slope, or check both
 
     2. **Output Interpretation** Go to the model tab:
     #### 1️⃣ Fixed Effects (Population-Level)
