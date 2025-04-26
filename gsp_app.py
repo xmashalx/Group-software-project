@@ -320,6 +320,8 @@ with tab3: ##this tab is going to be for fitting the model displaying the model 
                     
                     st.subheader('📊 Fixed Effects')
                     st.dataframe(fixed_df, use_container_width=True)
+                    # Extract random effects covariance matrix
+                    random_cov = model_random_fitted.cov_re
 
                     random_df = random_cov.stack().reset_index()
                     random_df.columns = ['Effect 1', 'Effect 2', 'Covariance']
