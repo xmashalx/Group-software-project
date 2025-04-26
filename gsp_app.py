@@ -320,12 +320,24 @@ with tab3: ##this tab is going to be for fitting the model displaying the model 
                     
                     st.subheader('📊 Fixed Effects')
                     st.dataframe(fixed_df, use_container_width=True)
-                    # Extract random effects covariance matrix
-                    random_cov = model_random_fitted.cov_re
-                    
-                    # Flatten matrix for display
+
                     random_df = random_cov.stack().reset_index()
                     random_df.columns = ['Effect 1', 'Effect 2', 'Covariance']
+                    
+                    # Restructure into single column format
+                    random_df = pd.DataFrame({
+                        'Effect Name': random_df.apply(
+                            lambda x: x['Effect 1'] if x['Effect 1'] == x['Effect 2'] 
+                            else f"{x['Effect 1']}x{x['Effect 2']} Covariance", 
+                            axis=1
+                        ),
+                        'Value': random_df['Covariance']
+                    })
+                    
+                    # Remove duplicate variance terms (optional - keeps covariance labels cleaner)
+                    random_df = random_df[~random_df['Effect Name'].str.endswith(' Covariance') | 
+                                        ~random_df.duplicated(subset=['Effect Name'], keep='first')]
+
                     
                     st.subheader('🧮 Random Effects Covariance Structure')
                     st.dataframe(random_df, use_container_width=True)
@@ -335,20 +347,6 @@ with tab3: ##this tab is going to be for fitting the model displaying the model 
                     st.write(f"🔧 Residual Variance: **{resid_var:.4f}**")
 
 
-
-                    ##generate and display a formula for the users model
-                    formula_parts = [
-                        f"{coeff:.2f}*{feature}" if coeff >= 0 else f"({coeff:.2f})*{feature}"
-                        for feature, coeff in coeffs.items()
-                        if feature != 'Intercept' and not np.isclose(coeff, 0) # Explicitly exclude intercept
-                    ]
-                    #formula_parts = [f"{coeff:.2f}*{feature}" if coeff > 0 else f"({coeff:.2f})*{feature}" for coeff, feature in zip(coeffs.values, coeffs.index)]
-                    formula_str = " + ".join(formula_parts)
-                    st.subheader('Generated Model Formula')
-                    intercept = model_random_fitted.params.get('Intercept', 0)
-                    st.write(f"Predicted {target} ={intercept:.2f} + {formula_str}")
-                    #st.write(f"Predicted {target} = {model_random_fitted.intercept:.2f} + {formula_str}")
-                    #{intercept:.2f} +
 
                     ## creating a group specific summary table
                     random_effects_df = pd.DataFrame(model_random_fitted.random_effects).T.reset_index()
@@ -381,15 +379,15 @@ with tab3: ##this tab is going to be for fitting the model displaying the model 
 
 
 
-                    ##now creating a place for the user to evaluate model stats and compare to fixed effects model
-                    fixed_aic = model_fixed.aic
-                    fixed_bic = model_fixed.bic
+                    ##now creating a place for the user to evaluate model stats 
+                    #fixed_aic = model_fixed.aic
+                    #fixed_bic = model_fixed.bic
                     fixed_log_likelihood = model_fixed.llf
-                    random_aic=model_random_fitted.aic
-                    random_bic=model_random_fitted.bic
+                    #random_aic=model_random_fitted.aic
+                    #random_bic=model_random_fitted.bic
                     random_log_likelihood=model_random_fitted.llf
-                    comparison_df = pd.DataFrame({"Model": ["Fixed Effects", "Random Effects"],"AIC": [fixed_aic, random_aic],"BIC": [fixed_bic, random_bic],"Log-Likelihood": [fixed_log_likelihood, random_log_likelihood]})
-                    st.subheader('Model Comparison: AIC, BIC, and Log-Likelihood')
+                    comparison_df = pd.DataFrame({"Model": ["Fixed Effects", "Random Effects"],"Log-Likelihood": [fixed_log_likelihood, random_log_likelihood]})
+                    st.subheader('Model Comparison: Log-Likelihood')
                     st.dataframe(comparison_df, use_container_width=True)
 
 
