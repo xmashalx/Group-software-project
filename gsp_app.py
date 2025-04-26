@@ -96,8 +96,8 @@ with tab1:
         - **Random effects**: Including random effects allows for outcomes to vary between groups (e.g. how does a specific drug dosage affect patients in hospitals differently)
         - **Random Intercepts**: Allow baseline outcomes to differ by group (irrespective of any predictor variable) (e.g. we might believe that the baseline blood pressure for patients varies according to the hospital)
         - **Random slopes**: Allow the relationship between a specific predictor and the oucomes to vary across groups (e.g., we might believe that the relationship between drug dosage and blood pressure differs across hospitals,  
-        therefore when choosing to select random slopes to be a part of the model you must choose which variable you would like to have a random slope effect)  
-        NOTE: to allow for both random intercept and random slopes in you model you can tick both checkboxes, remember to select a variable to model random slopes
+        therefore when choosing to select random slopes to be a part of the model you must choose which variable you would like to have a random slope effect)
+        **NOTE**: to allow for both random intercept and random slopes in you model you can tick both checkboxes, remember to select a variable to model random slopes
         """)
         
     
