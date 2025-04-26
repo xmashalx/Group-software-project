@@ -298,31 +298,42 @@ with tab3: ##this tab is going to be for fitting the model displaying the model 
 
                     ##fitting a random effects model
                     model_random=smf.mixedlm(formula, data, groups=data[group_vars],re_formula=re_formula)
-                    #model_random = MixedLM.from_formula(formula, data=data, groups=data[group_vars],re_formula=re_formula, cov_struct=cov_struct)
+                    
                     model_random_fitted = model_random.fit(reml=False)
-                    #model_random= MixedLM(formula, data, groups=data[random_vars],re_formula=re_formula,cov_struct=cov_struct).fit() #ref (https://www.geeksforgeeks.org/introduction-to-linear-mixed-effects-models/)
-                    #st.write('Fixed effect model summary: ')
-                    #st.write(model_fixed.summary())
-                    #st.write(f'{random_effect} model summary')
+             
 
                     st.session_state.model_random_fitted = model_random_fitted
 
                     ##now working to display the output of the model in an interactive user freindly way
-                    coeffs = model_random_fitted.params
-                    p_values = model_random_fitted.pvalues
-                    std_errs = model_random_fitted.bse
-                    result_df = pd.DataFrame({
-                       'Feature': coeffs.index,
-                       'Coefficient': coeffs.values,
-                       'Standard Error': std_errs.values,
-                       'P-value': p_values.values.round(5)
+                    # Extract fixed effects only
+                    fixed_effects = model_random_fitted.fe_params
+                    fixed_se = model_random_fitted.bse[:len(fixed_effects)]
+                    fixed_pvalues = model_random_fitted.pvalues[:len(fixed_effects)]
+                    
+                    fixed_df = pd.DataFrame({
+                        'Feature': fixed_effects.index,
+                        'Coefficient': fixed_effects.values,
+                        'Standard Error': fixed_se.values,
+                        'P-value': fixed_pvalues.values.round(5)
                     })
+                    fixed_df['Significant'] = fixed_df['P-value'].apply(lambda x: 'Yes' if x < 0.05 else 'No')
+                    
+                    st.subheader('📊 Fixed Effects')
+                    st.dataframe(fixed_df, use_container_width=True)
+                    # Extract random effects covariance matrix
+                    random_cov = model_random_fitted.cov_re
+                    
+                    # Flatten matrix for display
+                    random_df = random_cov.stack().reset_index()
+                    random_df.columns = ['Effect 1', 'Effect 2', 'Covariance']
+                    
+                    st.subheader('🧮 Random Effects Covariance Structure')
+                    st.dataframe(random_df, use_container_width=True)
+                    
+                    # Optional: show residual variance (i.e., error)
+                    resid_var = model_random_fitted.scale
+                    st.write(f"🔧 Residual Variance: **{resid_var:.4f}**")
 
-
-                    result_df['Significant'] = result_df['P-value'].apply(lambda x: 'Yes' if x < 0.05 else 'No') ##highlighting significant values for user
-                    st.subheader('Model Coefficients and Statistics')
-                    st.dataframe(result_df, use_container_width=True)
-                    #st.write(model_random_fitted.summary())
 
 
                     ##generate and display a formula for the users model
